@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Новости</h2>
+<div class="subtitle">Новые заявки</div>
+
+<div class="news-list">
+{% if news %}
+{% for item in news %}
+<div class="news-card">
+<a href="{{ item.link }}" target="_blank">
+<div class="news-thumb"><img src="{{ item.image }}" alt="{{ item.title }}"></div>
+<div class="news-info">
+<div class="news-date">{{ item.date }}</div>
+<div class="news-title">{{ item.title }}</div>
+</div>
+</a>
+</div>
+{% endfor %}
+{% else %}
+<div class="empty-message">Новостей пока нет.</div>
+{% endif %}
+</div>
+
+<h2>Жалобы</h2>
+<div class="subtitle">Новые заявки</div>
+<div class="card-list">
+{% if last_complaints %}
+{% for complaint in last_complaints %}
+<div class="feedback-card">
+<div class="feedback-header">
+<div class="feedback-author">{{ complaint.name_surname or "Аноним" }}</div>
+<div class="feedback-date-tag">{{ complaint.created_at.strftime("%d.%m.%Y") }}</div>
+<div class="feedback-reaction-buttons">
+<button class="feedback-reaction-btn feedback-like-btn">👍 5</button>
+<button class="feedback-reaction-btn feedback-dislike-btn">👎 0</button>
+</div>
+</div>
+<div class="feedback-card-content">
+<div class="feedback-content-header">
+<div class="feedback-content-title">{{ complaint.subject }}</div>
+<div class="feedback-content-reactions">
+<div class="feedback-content-reaction">💬 0</div>
+</div>
+</div>
+<div class="feedback-content-text">{{ complaint.message }}</div>
+</div>
+</div>
+{% endfor %}
+{% else %}
+<div class="empty-message">Пока жалоб нет.</div>
+{% endif %}
+</div>
+
+<h2>Идеи</h2>
+<div class="subtitle">Новые заявки</div>
+<div class="card-list">
+{% if last_ideas %}
+{% for idea in last_ideas %}
+<div class="feedback-card">
+<div class="feedback-header">
+<div class="feedback-author">{{ idea.name_surname or "Аноним" }}</div>
+<div class="feedback-date-tag">{{ idea.created_at.strftime("%d.%m.%Y") }}</div>
+<div class="feedback-reaction-buttons">
+<button class="feedback-reaction-btn feedback-like-btn">👍 5</button>
+<button class="feedback-reaction-btn feedback-dislike-btn">👎 0</button>
+</div>
+</div>
+<div class="feedback-card-content">
+<div class="feedback-content-header">
+<div class="feedback-content-title">{{ idea.subject }}</div>
+<div class="feedback-content-reactions">
+<div class="feedback-content-reaction">💬 0</div>
+</div>
+</div>
+<div class="feedback-content-text">{{ idea.message }}</div>
+</div>
+</div>
+{% endfor %}
+{% else %}
+<div class="empty-message">Пока идей нет.</div>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+.venv/
+venv/
+.env
+.env.docker
+.env.docker.test
+.env.test
+__pycache__/
+*.py[cod]
+*.pyc
+*.log
+.DS_Store
+.idea/
+*.sqlite3
+.vscode
+.idea
+.flake8

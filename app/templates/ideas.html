@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Оставить идею — Yessenov University{% endblock %}
+{% block header_title %}Оставить идею{% endblock %}
+{% block header_desc %}Форма для подачи идеи.{% endblock %}
+
+{% block content %}
+<div class="feedback-form-card">
+<form method="post" action="/ideas" class="idea-form">
+  <div class="form-title">Оставить идею</div>
+  <label for="name_surname">Имя и фамилия <span class="hint">(необязательно)</span>:</label>
+  <input type="text" id="name_surname" name="name_surname" placeholder="Иван Иванов">
+  <label for="email">Email <span class="hint">(необязательно)</span>:</label>
+  <input type="email" id="email" name="email" placeholder="you@example.com">
+  <label for="subject">Тема идеи:</label>
+  <input type="text" id="subject" name="subject" placeholder="Тема вашей идеи" required minlength="5" maxlength="100">
+  <label for="message">Текст идеи:</label>
+  <textarea id="message" name="message" rows="5" required placeholder="Опишите вашу идею..." minlength="20"></textarea>
+  <button type="submit" class="btn site-btn">Отправить идею</button>
+</form>
+</div>
+
+<div class="content">
+<h2>Последние идеи</h2>
+<p class="subtitle">Здесь отображаются только прошедшие модерацию идеи.</p>
+{% if ideas %}
+<div class="complaints-grid">
+  {% for idea in ideas %}
+  <div class="feedback-card">
+    <div class="feedback-header">
+      <div class="feedback-author">{{ idea.name_surname or "Аноним" }}</div>
+      <div class="feedback-date-tag">{{ idea.created_at.strftime("%d.%m.%Y") }}</div>
+      <div class="feedback-reaction-buttons">
+        <button class="feedback-reaction-btn feedback-like-btn">👍 5</button>
+        <button class="feedback-reaction-btn feedback-dislike-btn">👎 0</button>
+      </div>
+    </div>
+    <div class="feedback-card-content">
+      <div class="feedback-content-header">
+        <div class="feedback-content-title">{{ idea.subject }}</div>
+        <div class="feedback-content-reactions">
+          <div class="feedback-content-reaction">💬 0</div>
+        </div>
+      </div>
+      <div class="feedback-content-text">{{ idea.message }}</div>
+      {% if idea.admin_response %}
+      <div class="feedback-response"><strong>Ответ администрации:</strong> {{ idea.admin_response }}</div>
+      {% endif %}
+    </div>
+    <div class="feedback-actions">
+      <form method="post" action="/ideas/{{ idea.id }}/delete">
+        <button type="submit" class="btn delete-btn" onclick="return confirm('Удалить идею?');"><i class="fa-solid fa-trash"></i></button>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="pagination">
+  {% if has_prev %}
+  <a href="?page={{ current_page - 1 }}" class="btn outline">← Назад</a>
+  {% endif %}
+  <span>Страница {{ current_page }} из {{ total_pages }}</span>
+  {% if has_next %}
+  <a href="?page={{ current_page + 1 }}" class="btn outline">Вперёд →</a>
+  {% endif %}
+</div>
+{% else %}
+<div class="no-complaints-msg">Пока идей нет.</div>
+{% endif %}
+</div>
+{% endblock %}
