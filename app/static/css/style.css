@@ -852,6 +852,22 @@ margin: 0 15px 15px;
 border-radius: 12px;
 overflow: hidden;
 }
+.card-list .feedback-content-title,
+.card-list .feedback-content-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.complaints-grid .feedback-content-title,
+.complaints-grid .feedback-content-text {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+.complaints-grid .feedback-content-text {
+    white-space: pre-wrap;
+}
 .feedback-content-header {
   padding: 15px 20px;
   background: #f8f9fa;
@@ -900,7 +916,7 @@ text-overflow: ellipsis;
     position: absolute;
     top: 20px;
     right: 20px;
-    z-index: 1001; /* Выше сайдбара */
+    z-index: 1001;
     width: 30px;
     height: 21px;
 }
@@ -914,18 +930,15 @@ text-overflow: ellipsis;
     border-radius: 2px;
 }
 
-/* Rotate first bar */
 .sidebar-open .bar1 {
     transform: translate(0, 8px) rotate(-45deg);
     background-color: white;
 }
 
-/* Fade out the second bar */
 .sidebar-open .bar2 {
     opacity: 0;
 }
 
-/* Rotate last bar */
 .sidebar-open .bar3 {
     transform: translate(0, -8px) rotate(45deg);
     background-color: white;
@@ -991,7 +1004,6 @@ text-overflow: ellipsis;
     /* Уменьшаем отступы контента */
     .content {
         padding: 20px 15px;
-        /* margin-left: 0; */
     }
     
     /* Делаем бургер-меню меньше */
@@ -1051,13 +1063,8 @@ text-overflow: ellipsis;
         padding-right: 60px;
     }
     
-    /* Модальное окно - занимает весь экран */
+    /* Модальное окно */
     .modal-content {
-        /* margin: 0;
-        border-radius: 0;
-        min-height: 100vh;
-        max-width: 100%;
-        padding: 20px 15px; */
         width: 70%;
     }
     
