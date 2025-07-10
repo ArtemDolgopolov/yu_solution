@@ -46,5 +46,9 @@ async def get_home_page(
         }
     )
 
+@app.get("/login", response_class=HTMLResponse)
+async def login_page(request: Request):
+    return templates.TemplateResponse("users/login.html", {"request": request})
+
 if __name__ == "__main__":
     uvicorn.run("main:app", host="localhost", port=8080, reload=True)

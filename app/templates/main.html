@@ -23,7 +23,11 @@
 </div>
 
 <h2>Жалобы</h2>
+<div class="section-header">
 <div class="subtitle">Новые заявки</div>
+<a href="/complaints" class="view-all">Все жалобы</a>    
+</div>
+
 <div class="card-list">
 {% if last_complaints %}
 {% for complaint in last_complaints %}
@@ -53,7 +57,10 @@
 </div>
 
 <h2>Идеи</h2>
+<div class="section-header">
 <div class="subtitle">Новые заявки</div>
+<a href="/ideas" class="view-all">Все идеи</a>    
+</div>
 <div class="card-list">
 {% if last_ideas %}
 {% for idea in last_ideas %}
